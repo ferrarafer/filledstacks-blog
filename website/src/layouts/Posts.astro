@@ -1,0 +1,68 @@
+---
+import { localizePath } from "astro-i18next";
+import { SITE } from "@config";
+import Card from "@components/Card.astro";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import i18next from "i18next";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Paginator from "@components/Paginator.astro";
+import slugify from "@utils/slugify";
+import StackedBanner from "@components/StackedBanner.astro";
+import type { CollectionEntry } from "astro:content";
+import type { NavigationItem } from "@types";
+
+interface Props {
+  baseUrl: string;
+  category: NavigationItem;
+  pageDescription: string;
+  pageNum: number;
+  pageTitle: string;
+  posts: (CollectionEntry<"snippets"> | CollectionEntry<"tutorials">)[];
+  rssPathFile?: string;
+  totalPages: number;
+}
+
+const {
+  baseUrl = "post",
+  category = "tutorials",
+  pageDescription,
+  pageNum,
+  pageTitle,
+  posts,
+  rssPathFile,
+  totalPages,
+} = Astro.props;
+---
+
+<Layout title={`${pageTitle} | ${SITE.title}`}>
+  <Header activeNav={category} />
+  <Main
+    pageTitle={pageTitle}
+    pageDesc={pageDescription}
+    rssFilePath={rssPathFile}
+  >
+    <StackedBanner
+      href="https://stacked.filledstacks.com/"
+      src="/assets/stacked-800-200.jpg"
+      alt="Stacked"
+    />
+    <Paginator category={category} pageNum={pageNum} totalPages={totalPages} />
+    <div class="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        posts.map(post => (
+          <Card
+            href={localizePath(
+              `/${baseUrl}/${slugify(post.data)}`,
+              i18next.language
+            )}
+            post={post}
+          />
+        ))
+      }
+    </div>
+  </Main>
+  <Paginator category={category} pageNum={pageNum} totalPages={totalPages} />
+  <Footer noMarginTop={totalPages > 1} />
+</Layout>

@@ -1,0 +1,52 @@
+{
+  "site": {
+    "title": "Learn to Produce Production Level Code",
+    "description": "Here is the description of my awesome website!",
+    "rights": "All rights reserved.",
+    "posts": "Posts",
+    "tutorials": "Tutorials",
+    "snippets": "Snippets",
+    "tags": "Tags",
+    "about": "About",
+    "prev": "Prev",
+    "next": "Next",
+    "back": "Go back",
+    "skip_to_content": "Skip to content"
+  },
+  "404": {
+    "title": "404 Not Found",
+    "page_not_found": "Page Not Found",
+    "go_back_home": "Go back home"
+  },
+  "home": {
+    "hero_video_title": "An Advanced Flutter Dialog System",
+    "featured": "Featured",
+    "recent_tutorials": "Latest Tutorials",
+    "all_tutorials": "View All",
+    "recent_snippets": "Latest Snippets",
+    "all_snippets": "View All"
+  },
+  "tutorials": {
+    "title": "Tutorials",
+    "description": "Tutorials are the written versions of video tutorials. It covers one topic in around 15 minutes and can be expected regularly."
+  },
+  "snippets": {
+    "title": "Snippets",
+    "description": "Snippets are the quick code gists. These shorts snippets can be used easily in your projects."
+  },
+  "tags": {
+    "title": "Tags",
+    "description": "All the tags used in posts."
+  },
+  "tag": {
+    "title": "Tag",
+    "description": "All the articles with the tag"
+  },
+  "search": {
+    "title": "Search",
+    "description": "Search any article ..."
+  },
+  "post": {
+    "minutes": "minutes"
+  }
+}

@@ -1,0 +1,36 @@
+---
+import { SITE } from "@config";
+import Footer from "@components/Footer.astro";
+import getSnippetsCollection from "@utils/getSnippetsCollection";
+import getTutorialsCollection from "@utils/getTutorialsCollection";
+import getUniqueTags from "@utils/getUniqueTags";
+import Header from "@components/Header.astro";
+import i18next, { t, changeLanguage } from "i18next";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Tag from "@components/Tag.astro";
+import type { Language } from "@types";
+
+changeLanguage("en");
+
+const tPageTitle = t("tags.title");
+const tPageDesc = t("tags.description");
+const snippets = await getSnippetsCollection({
+  language: i18next.language as Language,
+});
+const tutorials = await getTutorialsCollection({
+  language: i18next.language as Language,
+});
+
+let tags = getUniqueTags([...snippets, ...tutorials]);
+---
+
+<Layout title={`${tPageTitle} | ${SITE.title}`}>
+  <Header activeNav="tags" />
+  <Main pageTitle={tPageTitle} pageDesc={tPageDesc}>
+    <ul>
+      {tags.map(tag => <Tag name={tag} size="lg" />)}
+    </ul>
+  </Main>
+  <Footer />
+</Layout>

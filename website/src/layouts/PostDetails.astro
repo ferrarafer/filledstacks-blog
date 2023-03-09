@@ -1,0 +1,115 @@
+---
+import { getEntries } from "astro:content";
+import { t } from "i18next";
+import Authors from "@components/Authors.astro";
+import CardDatetime from "@components/CardDatetime";
+import CardReadingTime from "@components/CardReadingTime";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import Layout from "@layouts/Layout.astro";
+import Tag from "@components/Tag.astro";
+import type { CollectionEntryOptions, NavigationItem } from "@types";
+import RelatedPosts from "@components/RelatedPosts.astro";
+
+interface Props {
+  category: NavigationItem;
+  post: CollectionEntryOptions;
+}
+
+const { category, post } = Astro.props;
+
+const { title, description, ogImage, ogVideo, published, tags } = post.data;
+
+const authors = await getEntries(post.data.authors);
+const authorMeta = authors.map(author => author.data.name).join(", ");
+
+const { Content, remarkPluginFrontmatter } = await post.render();
+
+const ogUrl = new URL(ogImage ? ogImage : `${title}.svg`, Astro.url.origin)
+  .href;
+---
+
+<Layout
+  title={title}
+  author={authorMeta}
+  description={description}
+  ogImage={ogUrl}
+>
+  <Header activeNav={category} />
+  <div class="mx-auto flex w-full max-w-4xl justify-start px-2">
+    <button
+      class="focus-outline mt-8 mb-2 flex hover:opacity-75"
+      onclick="
+      history.back()
+      "
+    >
+      <svg xmlns="http://www.w3.org/2000/svg"
+        ><path
+          d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
+        ></path>
+      </svg><span>{t("site.back")}</span>
+    </button>
+  </div>
+  <main id="main-content">
+    <h1 class="post-title">{title}</h1>
+    <h2 class="mt-4">{description}</h2>
+    <Authors authors={authors} />
+    <span class="flex">
+      <CardDatetime datetime={published} size="lg" className="my-2" />
+      <CardReadingTime
+        time={remarkPluginFrontmatter.minutes}
+        size="lg"
+        className="my-2 ml-4"
+      />
+    </span>
+    {
+      ogVideo ? (
+        <div class="video-container mt-8">
+          <iframe
+            class="video"
+            src={ogVideo}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          />
+        </div>
+      ) : (
+        <img src={ogUrl} class="mt-8" />
+      )
+    }
+    <article id="article" role="article" class="prose mx-auto mt-8 max-w-4xl">
+      <Content />
+    </article>
+
+    <ul class="tags-container">
+      {tags.map(tag => <Tag name={tag} />)}
+    </ul>
+  </main>
+  <RelatedPosts post={post} />
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    @apply mx-auto w-full max-w-4xl px-4 pb-12;
+  }
+  .post-title {
+    @apply text-2xl font-semibold text-skin-accent;
+  }
+  .tags-container {
+    @apply my-8;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+  }
+  .video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

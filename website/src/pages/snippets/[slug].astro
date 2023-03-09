@@ -1,0 +1,67 @@
+---
+import { SITE } from "@config";
+import getPageNumbers from "@utils/getPageNumbers";
+import getSnippetsCollection from "@utils/getSnippetsCollection";
+import i18next, { t, changeLanguage } from "i18next";
+import PostDetails from "@layouts/PostDetails.astro";
+import Posts from "@layouts/Posts.astro";
+import slugify from "@utils/slugify";
+import type { CollectionEntry } from "astro:content";
+import type { Language } from "@types";
+
+changeLanguage("en");
+
+interface Props {
+  post: CollectionEntry<"snippets">;
+}
+
+export async function getStaticPaths() {
+  const posts = await getSnippetsCollection({
+    language: i18next.language as Language,
+    draft: false,
+  });
+  const postResult = posts.map(post => ({
+    params: { slug: slugify(post.data) },
+    // params: { slug: post.slug },
+    props: { post },
+  }));
+  const pagePaths = getPageNumbers(posts.length).map(pageNum => ({
+    params: { slug: String(pageNum) },
+  }));
+  return [...postResult, ...pagePaths];
+}
+
+const { slug } = Astro.params;
+const { post } = Astro.props;
+
+const tPageTitle = t("snippets.title");
+const tPageDesc = t("snippets.description");
+const posts = await getSnippetsCollection({
+  language: i18next.language as Language,
+  draft: false,
+});
+const totalPages = getPageNumbers(posts.length);
+const currentPage =
+  slug && !isNaN(Number(slug)) && totalPages.includes(Number(slug))
+    ? Number(slug)
+    : 0;
+const lastPost = currentPage * SITE.postPerPage;
+const startPost = lastPost - SITE.postPerPage;
+const paginatedPosts = posts.slice(startPost, lastPost);
+---
+
+{
+  post ? (
+    <PostDetails category="snippet" post={post} />
+  ) : (
+    <Posts
+      baseUrl="snippets"
+      category="snippets"
+      posts={paginatedPosts}
+      pageNum={currentPage}
+      totalPages={totalPages.length}
+      pageTitle={tPageTitle}
+      pageDescription={tPageDesc}
+    />
+  )
+}

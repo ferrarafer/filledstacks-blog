@@ -1,0 +1,52 @@
+{
+  "site": {
+    "title": "Aprenda a producir código de producción",
+    "description": "Aprenda a producir código de producción",
+    "rights": "Todos los derechos reservados.",
+    "posts": "Publicaciones",
+    "tutorials": "Tutoriales",
+    "snippets": "Fragmentos",
+    "tags": "Etiquetas",
+    "about": "Acerca de",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "back": "Regresar",
+    "skip_to_content": "Ir al contenido"
+  },
+  "404": {
+    "title": "404 No Encontrado",
+    "page_not_found": "Página No Encontrada",
+    "go_back_home": "Regresar a Inicio"
+  },
+  "home": {
+    "hero_video_title": "Un sistema de diálogo avanzado para Flutter",
+    "featured": "Destacados",
+    "recent_tutorials": "Tutoriales Recientes",
+    "all_tutorials": "Todos los Tutoriales",
+    "recent_snippets": "Fragmentos Recientes",
+    "all_snippets": "Todos los Fragmentos"
+  },
+  "tutorials": {
+    "title": "Tutoriales",
+    "description": "Los tutoriales son la versión escrita de los videotutoriales. Cubren un tema en unos 15 minutos y pueden esperarse con regularidad."
+  },
+  "snippets": {
+    "title": "Fragmentos",
+    "description": "Los fragmentos son los gists de código rápido. Estos fragmentos cortos se pueden utilizar fácilmente en sus proyectos."
+  },
+  "tags": {
+    "title": "Etiquetas",
+    "description": "Todas las etiquetas usadas en las publicaciones."
+  },
+  "tag": {
+    "title": "Etiqueta",
+    "description": "Todas las publicaciones con la etiqueta"
+  },
+  "search": {
+    "title": "Buscar",
+    "description": "Buscar cualquier artículo ..."
+  },
+  "post": {
+    "minutes": "minutos"
+  }
+}

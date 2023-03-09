@@ -1,0 +1,37 @@
+name: Deploy to the Staging channel
+
+on:
+  push:
+    branches: [develop]
+  # Allows you to run this workflow manually from the Actions tab on GitHub
+  workflow_dispatch:
+
+jobs:
+  build-staging-preview:
+    name: Build and Deploy to Staging
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install PNpM (Fast, disk space efficient package manager)
+        run: npm i -g pnpm@latest
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Build webapp
+        run: pnpm build
+
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          entrypoint: ./website
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          expires: 30d
+          projectId: filledstacks-blog
+          channelId: staging
