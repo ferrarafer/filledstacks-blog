@@ -4,7 +4,7 @@ import type { SocialObjects } from "./types";
 export type Frontmatter = CollectionEntry<"blog">["data"];
 
 export const SITE = {
-  website: "https://astro-test-2553e.web.app",
+  website: "https://filledstacks-blog.web.app/",
   author: "Dane Mackier",
   desc: "Learn to Produce Production Level Code",
   title: "FilledStacks",
