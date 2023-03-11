@@ -18,6 +18,7 @@ export interface Props {
   totalPages: number;
   posts: CollectionEntry<"blog">[];
   isSnippet?: boolean;
+  rssPathFile?: string;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   totalPages,
   posts,
   isSnippet = false,
+  rssPathFile,
 } = Astro.props;
 
 const prev = pageNum > 1 ? "" : "disabled";
@@ -35,7 +37,11 @@ const next = pageNum < totalPages ? "" : "disabled";
 
 <Layout title={`${pageTitle} | ${SITE.title}`}>
   <Header activeNav="posts" />
-  <Main pageTitle={pageTitle} pageDesc={pageDescription}>
+  <Main
+    pageTitle={pageTitle}
+    pageDesc={pageDescription}
+    rssFilePath={rssPathFile}
+  >
     <div class="m-auto grid grid-cols-1 justify-center gap-8 sm:grid-cols-2">
       {
         posts.map(({ data }) => (

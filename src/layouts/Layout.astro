@@ -3,8 +3,10 @@ import { SITE } from "@config";
 import i18next from "i18next";
 import { HeadHrefLangs } from "astro-i18next/components";
 import "../styles/base.css";
+import CreateCopyCodeButtons from "../components/CodeButtons/CreateCopyCodeButtons.astro";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
 
 export interface Props {
   title?: string;
@@ -62,6 +64,20 @@ const fallbackImageURL = new URL(SITE.ogImage, Astro.url.origin).href;
         ? fallbackImageURL
         : socialImageURL}
     />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      type="text/partytown"
+      src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-V3YY87D19W");
+    </script>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

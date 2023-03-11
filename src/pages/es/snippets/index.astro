@@ -5,6 +5,7 @@ import getSortedPosts from "@utils/getSortedPosts";
 import getPageNumbers from "@utils/getPageNumbers";
 import { getCollection } from "astro:content";
 import i18next, { t, changeLanguage } from "i18next";
+import { localizePath } from "astro-i18next";
 
 changeLanguage("es");
 
@@ -27,4 +28,6 @@ const paginatedPosts = sortedPosts.slice(0, SITE.postPerPage);
   pageNum={1}
   totalPages={totalPages.length}
   isSnippet={true}
+  rssPathFile="/snippets/rss.xml"
+  rssPathFile={localizePath(`/snippets/rss.xml`, i18next.language)}
 />
