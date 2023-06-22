@@ -67,7 +67,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
                   body={data.description}
                   ogImage={data.ogImage}
                   href={localizePath(
-                    `/posts/${slugify(data)}`,
+                    `/post/${slugify(data)}`,
                     i18next.language
                   )}
                   published={data.published}
@@ -105,7 +105,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
                     body={data.description}
                     ogImage={data.ogImage}
                     href={localizePath(
-                      `/posts/${slugify(data)}`,
+                      `/post/${slugify(data)}`,
                       i18next.language
                     )}
                     published={data.published}
@@ -142,7 +142,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
                     body={data.description}
                     ogImage={data.ogImage}
                     href={localizePath(
-                      `/posts/${slugify(data)}`,
+                      `/snippet/${slugify(data)}`,
                       i18next.language
                     )}
                     published={data.published}
