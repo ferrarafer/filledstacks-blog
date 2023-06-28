@@ -10,8 +10,16 @@ import "./HeaderButton.css";
 import logoPNG from "/assets/logo.png";
 import logoSVG from "/assets/logo.svg";
 
-export interface Props {
-  activeNav?: "posts" | "tutorials" | "snippets" | "tags" | "about" | "search";
+interface Props {
+  activeNav?:
+    | "posts"
+    | "tutorials"
+    | "tutorial"
+    | "snippets"
+    | "snippet"
+    | "tags"
+    | "about"
+    | "search";
 }
 
 const { activeNav } = Astro.props;
@@ -52,7 +60,9 @@ const { activeNav } = Astro.props;
           <li>
             <a
               href={localizePath(`/tutorials`, i18next.language)}
-              class={activeNav === "tutorials" ? "active" : ""}
+              class={activeNav === "tutorials" || activeNav === "tutorial"
+                ? "active"
+                : ""}
             >
               {t("site.tutorials")}
             </a>
@@ -60,7 +70,9 @@ const { activeNav } = Astro.props;
           <li>
             <a
               href={localizePath(`/snippets`, i18next.language)}
-              class={activeNav === "snippets" ? "active" : ""}
+              class={activeNav === "snippets" || activeNav === "snippet"
+                ? "active"
+                : ""}
             >
               {t("site.snippets")}
             </a>
@@ -111,13 +123,14 @@ const { activeNav } = Astro.props;
               )
             }
           </li>
-          <li>
+          <!-- TODO: REMOVE UNTIL WE HAVE A REASONABLE AMOUNT OF POSTS TRANSLATED -->
+          <!-- <li>
             <LanguageSelector
               id="language-selector"
               showFlag={false}
               languageMapping={{ en: "EN", es: "ES" }}
             />
-          </li>
+          </li> -->
         </ul>
       </nav>
     </div>
@@ -129,7 +142,7 @@ const { activeNav } = Astro.props;
     @apply absolute -top-full left-16 z-50 bg-skin-accent py-2 px-3 text-skin-inverted transition-all focus:top-4;
   }
   .nav-container {
-    @apply mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row;
+    @apply mx-auto flex max-w-4xl flex-col items-center justify-between sm:flex-row;
   }
   .top-nav-wrap {
     @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
@@ -164,7 +177,7 @@ const { activeNav } = Astro.props;
     @apply col-span-1;
   }
   nav a.active {
-    @apply underline decoration-wavy decoration-2 underline-offset-4;
+    @apply rounded-md bg-[#9166cc] hover:text-skin-inverted;
   }
   nav a.active svg {
     @apply fill-skin-accent;
