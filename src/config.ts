@@ -10,7 +10,7 @@ export const SITE = {
   title: "FilledStacks",
   ogImage: "filledstacks-og.jpg",
   lightAndDarkMode: true,
-  postPerPage: 10,
+  postPerPage: 15,
 };
 
 export const LOGO_IMAGE = {
