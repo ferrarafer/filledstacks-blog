@@ -22,12 +22,13 @@ const paginatedPosts = sortedPosts.slice(0, SITE.postPerPage);
 ---
 
 <Posts
+  baseUrl="snippet"
+  category="snippets"
   pageTitle={tPageTitle}
   pageDescription={tPageDesc}
   posts={paginatedPosts}
   pageNum={1}
   totalPages={totalPages.length}
-  isSnippet={true}
   rssPathFile="/snippets/rss.xml"
   rssPathFile={localizePath(`/snippets/rss.xml`, i18next.language)}
 />
