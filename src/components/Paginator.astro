@@ -2,14 +2,15 @@
 import { localizePath } from "astro-i18next";
 import LinkButton from "@components/LinkButton.astro";
 import i18next, { t } from "i18next";
+import type { NavigationItem } from "@types";
 
 interface Props {
-  isSnippet?: boolean;
+  category: NavigationItem;
   pageNum: number;
   totalPages: number;
 }
 
-const { isSnippet = false, pageNum = 0, totalPages = 0 } = Astro.props;
+const { category, pageNum = 0, totalPages = 0 } = Astro.props;
 
 const prev = pageNum > 1 ? "" : "disabled";
 const next = pageNum < totalPages ? "" : "disabled";
@@ -21,9 +22,7 @@ const next = pageNum < totalPages ? "" : "disabled";
       <LinkButton
         disabled={prev === "disabled"}
         href={localizePath(
-          `/${isSnippet ? "snippets" : "tutorials"}${
-            pageNum - 1 !== 1 ? "/" + (pageNum - 1) : ""
-          }`,
+          `/${category}${pageNum - 1 !== 1 ? "/" + (pageNum - 1) : ""}`,
           i18next.language
         )}
         className={`mr-4 select-none ${prev}`}
@@ -36,10 +35,7 @@ const next = pageNum < totalPages ? "" : "disabled";
       </LinkButton>
       <LinkButton
         disabled={next === "disabled"}
-        href={localizePath(
-          `/${isSnippet ? "snippets" : "tutorials"}/${pageNum + 1}`,
-          i18next.language
-        )}
+        href={localizePath(`/${category}/${pageNum + 1}`, i18next.language)}
         className={`ml-4 select-none ${next}`}
         ariaLabel="Next"
       >
