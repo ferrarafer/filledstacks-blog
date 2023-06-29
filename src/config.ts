@@ -11,6 +11,7 @@ export const SITE = {
   ogImage: "filledstacks-og.jpg",
   lightAndDarkMode: true,
   postPerPage: 15,
+  isLocalizationEnabled: false,
 };
 
 export const LOGO_IMAGE = {
