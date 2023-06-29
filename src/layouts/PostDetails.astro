@@ -6,13 +6,15 @@ import Tag from "@components/Tag.astro";
 import CardDatetime from "@components/CardDatetime";
 import CardReadingTime from "@components/CardReadingTime";
 import type { CollectionEntry } from "astro:content";
+import type { NavigationItem } from "@types";
 import { t } from "i18next";
 
-export interface Props {
+interface Props {
+  category: NavigationItem;
   post: CollectionEntry<"blog">;
 }
 
-const { post } = Astro.props;
+const { category, post } = Astro.props;
 
 const { title, author, description, ogImage, ogVideo, published, tags } =
   post.data;
@@ -24,7 +26,7 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.svg`, Astro.url.origin)
 ---
 
 <Layout title={title} author={author} description={description} ogImage={ogUrl}>
-  <Header />
+  <Header activeNav={category} />
   <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
     <button
       class="focus-outline mt-8 mb-2 flex hover:opacity-75"
@@ -63,7 +65,7 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.svg`, Astro.url.origin)
         </div>
       </li>
     </ul>
-    <span class="flex inline-flex">
+    <span class="flex">
       <CardDatetime datetime={published} size="lg" className="my-2" />
       <CardReadingTime
         time={remarkPluginFrontmatter.minutes}

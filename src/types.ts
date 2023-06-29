@@ -30,3 +30,11 @@ export type SocialMedia =
   | "Steam"
   | "Telegram"
   | "Mastodon";
+
+export type NavigationItem =
+  | "tutorials"
+  | "tutorial"
+  | "snippets"
+  | "snippet"
+  | "tags"
+  | "search";

@@ -5,6 +5,7 @@
     "ignoreDeprecations": "5.0",
     "paths": {
       "@*": ["./src/*"]
-    }
+    },
+    "verbatimModuleSyntax": true
   }
 }
