@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import i18next, { changeLanguage, t } from "i18next";
 import { localizePath } from "astro-i18next";
 import Layout from "@layouts/Layout.astro";
@@ -41,16 +41,19 @@ const tagPosts = getPostsByTag(posts, tag);
 <Layout title={`${tPageTitle}:${tag} | ${SITE.title}`}>
   <Header activeNav="tags" />
   <Main pageTitle={`${tPageTitle}:${tag}`} pageDesc={`${tPageDesc} "${tag}".`}>
-    <ul
-      class={`grid grid-cols-1 gap-8 sm:grid-cols-3 m-auto mt-10 justify-center`}
-    >
+    <ul class="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
       {
         tagPosts.map(({ data }) => (
           <Card
             title={data.title}
             body={data.description}
             ogImage={data.ogImage}
-            href={localizePath(`/posts/${slugify(data)}`, i18next.language)}
+            href={localizePath(
+              `/${
+                data.categories[0] == "tutorial" ? "post" : "snippet"
+              }/${slugify(data)}`,
+              i18next.language
+            )}
             published={data.published}
           />
         ))
