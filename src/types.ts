@@ -37,4 +37,5 @@ export type NavigationItem =
   | "snippets"
   | "snippet"
   | "tags"
-  | "search";
+  | "search"
+  | "about";

@@ -9,7 +9,7 @@ export const SITE = {
   desc: "Learn to Produce Production Level Code",
   title: "FilledStacks",
   ogImage: "filledstacks-og.jpg",
-  lightAndDarkMode: true,
+  lightAndDarkMode: false,
   postPerPage: 15,
   isLocalizationEnabled: false,
 };

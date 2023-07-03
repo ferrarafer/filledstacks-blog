@@ -6,7 +6,7 @@ import Header from "@components/Header.astro";
 import i18next, { changeLanguage, t } from "i18next";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import getSortedPosts from "@utils/getSortedPosts";
 import FlutterWebCourseBanner from "@components/FlutterWebCourseBanner.astro";
 import PostsGrid from "@components/PostsGrid.astro";
@@ -14,7 +14,6 @@ import PostsGrid from "@components/PostsGrid.astro";
 changeLanguage("en");
 
 const tPageTitle = t("site.title");
-const tHeroTitle = t("home.hero_video_title");
 const tFeatured = t("home.featured");
 const tRecentTutorials = t("home.recent_tutorials");
 const tAllTutorials = t("home.all_tutorials");

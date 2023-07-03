@@ -15,7 +15,6 @@ export const blogSchema = z
     ogVideo: z.string().url().optional(),
     description: z.string(),
     lang: z.string().optional(),
-    minutes: z.string().optional(),
   })
   .strict();
 

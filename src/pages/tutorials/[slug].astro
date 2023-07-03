@@ -35,7 +35,6 @@ const { post } = Astro.props;
 
 const tPageTitle = t("tutorials.title");
 const tPageDesc = t("tutorials.description");
-// const posts = await getCollection("blog");
 const posts = await getCollection(
   "blog",
   ({ id, data }) =>
