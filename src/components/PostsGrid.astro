@@ -36,16 +36,13 @@ const { baseUrl, linkToAllHref, linkToAllText, posts, title } = Astro.props;
         </h2>
       )}
       <div class="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-        {posts.map(({ data }) => (
+        {posts.map(post => (
           <Card
-            title={data.title}
-            body={data.description}
-            ogImage={data.ogImage}
             href={localizePath(
-              `/${baseUrl}/${slugify(data)}`,
+              `/${baseUrl}/${slugify(post.data)}`,
               i18next.language
             )}
-            published={data.published}
+            post={post}
           />
         ))}
       </div>

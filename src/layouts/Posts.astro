@@ -4,7 +4,7 @@ import { SITE } from "@config";
 import Card from "@components/Card.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
-import i18next, { t } from "i18next";
+import i18next from "i18next";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import Paginator from "@components/Paginator.astro";
@@ -51,16 +51,13 @@ const {
     <Paginator category={category} pageNum={pageNum} totalPages={totalPages} />
     <div class="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
       {
-        posts.map(({ data }) => (
+        posts.map(post => (
           <Card
-            title={data.title}
-            body={data.description}
-            ogImage={data.ogImage}
             href={localizePath(
-              `/${baseUrl}/${slugify(data)}`,
+              `/${baseUrl}/${slugify(post.data)}`,
               i18next.language
             )}
-            published={data.published}
+            post={post}
           />
         ))
       }

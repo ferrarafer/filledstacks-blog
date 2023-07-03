@@ -1,30 +1,30 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import CardDatetime from "./CardDatetime";
+import CardReadingTime from "./CardReadingTime";
 
 export interface Props {
-  title: string;
-  body: string;
-  ogImage?: string;
   href: string;
-  published: Date;
+  post: CollectionEntry<"blog">;
 }
 
-const { href, title, body, ogImage, published } = Astro.props;
+const { href, post } = Astro.props;
+const { description, ogImage, published, title } = post.data;
+const { remarkPluginFrontmatter } = await post.render();
 ---
 
-<a href={href}>
-  <div
-    class="w-full rounded-lg border shadow duration-200 ease-in hover:scale-105"
-  >
-    <img class="rounded-t-lg" src={ogImage} alt="" />
-    <div class="p-5">
-      <h5 class="mb-5 text-base font-bold leading-5 tracking-tight">
-        {title}
-      </h5>
-      <p class="mb-10 text-xs font-thin leading-6">
-        {body}
-      </p>
-      <CardDatetime datetime={published} />
+<div class="w-full">
+  <a href={href}>
+    <div class="shadow duration-200 ease-in hover:scale-105">
+      <img class="rounded-t-lg" src={ogImage} alt="" />
+      <div class="rounded-b-lg bg-[#2a2e35] p-5">
+        <h5 class="mb-5 text-base font-bold leading-5 tracking-tight">
+          {title}
+        </h5>
+        <p class="mb-10 text-xs font-thin leading-6">{description}</p>
+        <CardReadingTime time={remarkPluginFrontmatter.minutes} />
+        <CardDatetime datetime={published} />
+      </div>
     </div>
-  </div>
-</a>
+  </a>
+</div>

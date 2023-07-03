@@ -14,12 +14,11 @@ import { SITE } from "@config";
 
 changeLanguage("en");
 
-const tPageTitle = t("tag.title");
-const tPageDesc = t("tag.description");
 export interface Props {
   post: CollectionEntry<"blog">;
   tag: string;
 }
+
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   const tags = getUniqueTags(posts);
@@ -30,7 +29,11 @@ export async function getStaticPaths() {
     };
   });
 }
+
 const { tag } = Astro.props;
+
+const tPageTitle = t("tag.title");
+const tPageDesc = t("tag.description");
 const posts = await getCollection(
   "blog",
   ({ id, data }) => id.startsWith(`${i18next.language}/`) && !data.draft
@@ -43,18 +46,15 @@ const tagPosts = getPostsByTag(posts, tag);
   <Main pageTitle={`${tPageTitle}:${tag}`} pageDesc={`${tPageDesc} "${tag}".`}>
     <ul class="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
       {
-        tagPosts.map(({ data }) => (
+        tagPosts.map(post => (
           <Card
-            title={data.title}
-            body={data.description}
-            ogImage={data.ogImage}
             href={localizePath(
               `/${
-                data.categories[0] == "tutorial" ? "post" : "snippet"
-              }/${slugify(data)}`,
+                post.data.categories[0] == "tutorial" ? "post" : "snippet"
+              }/${slugify(post.data)}`,
               i18next.language
             )}
-            published={data.published}
+            post={post}
           />
         ))
       }
