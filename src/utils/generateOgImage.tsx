@@ -119,13 +119,13 @@ const options: SatoriOptions = {
   embedFont: true,
   fonts: [
     {
-      name: "IBM Plex Mono",
+      name: "Open Sans",
       data: fontRegular,
       weight: 400,
       style: "normal",
     },
     {
-      name: "IBM Plex Mono",
+      name: "Open Sans",
       data: fontBold,
       weight: 600,
       style: "normal",

@@ -4,7 +4,6 @@ description: A Guide to building and deploying a Flutter Website in 2023.
 published: 2023-02-28
 updated: 2023-02-28
 postSlug: how-to-build-a-flutter-website-in-2023
-author: Dane Mackier
 ogImage: /assets/blog/tutorials/085/thumbnail.jpeg
 featured: false
 draft: false
