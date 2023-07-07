@@ -1,23 +1,26 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import Tag from "@components/Tag.astro";
+import { getEntries, type CollectionEntry } from "astro:content";
+import { t } from "i18next";
+import Authors from "@components/Authors.astro";
 import CardDatetime from "@components/CardDatetime";
 import CardReadingTime from "@components/CardReadingTime";
-import type { CollectionEntry } from "astro:content";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import Layout from "@layouts/Layout.astro";
+import Tag from "@components/Tag.astro";
 import type { NavigationItem } from "@types";
-import { t } from "i18next";
 
 interface Props {
   category: NavigationItem;
-  post: CollectionEntry<"blog">;
+  post: CollectionEntry<"snippets"> | CollectionEntry<"tutorials">;
 }
 
 const { category, post } = Astro.props;
 
-const { title, author, description, ogImage, ogVideo, published, tags } =
-  post.data;
+const { title, description, ogImage, ogVideo, published, tags } = post.data;
+
+const authors = await getEntries(post.data.authors);
+const authorMeta = authors.map(author => author.data.name).join(", ");
 
 const { Content, remarkPluginFrontmatter } = await post.render();
 
@@ -25,12 +28,19 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.svg`, Astro.url.origin)
   .href;
 ---
 
-<Layout title={title} author={author} description={description} ogImage={ogUrl}>
+<Layout
+  title={title}
+  author={authorMeta}
+  description={description}
+  ogImage={ogUrl}
+>
   <Header activeNav={category} />
   <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
     <button
       class="focus-outline mt-8 mb-2 flex hover:opacity-75"
-      onclick="history.back()"
+      onclick="
+      history.back()
+"
     >
       <svg xmlns="http://www.w3.org/2000/svg"
         ><path
@@ -42,29 +52,7 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.svg`, Astro.url.origin)
   <main id="main-content">
     <h1 class="post-title">{title}</h1>
     <h2 class="mt-4">{description}</h2>
-    <ul role="list" class="divide-gray-200 dark:divide-gray-700 divide-y">
-      <li class="py-3 sm:py-4">
-        <div class="flex items-center space-x-4">
-          <div class="flex-shrink-0">
-            <img
-              class="h-8 w-8 rounded-full"
-              src="/assets/authors/dane-mackier.png"
-              alt={author}
-            />
-          </div>
-          <div class="min-w-0 flex-1">
-            <p
-              class="text-gray-900 dark:text-white truncate text-sm font-medium"
-            >
-              Written by <strong>{author}</strong>
-            </p>
-            <p class="text-gray-500 dark:text-gray-400 truncate text-sm">
-              CEO of FilledStacks
-            </p>
-          </div>
-        </div>
-      </li>
-    </ul>
+    <Authors authors={authors} />
     <span class="flex">
       <CardDatetime datetime={published} size="lg" className="my-2" />
       <CardReadingTime

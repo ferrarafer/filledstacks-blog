@@ -1,19 +1,18 @@
 ---
 title: Build a Flutter Location Service
 description: In this tutorial I show you how to get your location in Flutter from a service.
+authors:
+  - en/dane-mackier
 published: 2019-09-13
 updated: 2019-09-13
 postSlug: build-a-flutter-location-service
-ogImage: /assets/blog/snippets/025/025.jpg
+ogImage: /assets/snippets/025/025.jpg
 ogVideo: https://www.youtube.com/embed/UdBUe_NP-BI
 featured: false
 draft: false
 tags:
   - flutter
   - location
-categories:
-  - snippet
-lang: en
 ---
 
 Getting your location in Flutter is an easy task. This tutorial will show you how to wrap the location package into a service that's easy to consume in your application. Create a new Flutter project and follow along.

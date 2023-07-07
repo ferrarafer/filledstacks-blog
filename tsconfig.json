@@ -1,11 +1,13 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": ".",
     "ignoreDeprecations": "5.0",
     "paths": {
       "@*": ["./src/*"]
     },
+    "strictNullChecks": true,
     "verbatimModuleSyntax": true
   }
 }

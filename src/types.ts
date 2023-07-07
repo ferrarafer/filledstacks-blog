@@ -1,3 +1,5 @@
+import type { CollectionEntry } from "astro:content";
+
 export type SocialObjects = {
   name: SocialMedia;
   href: string;
@@ -39,3 +41,9 @@ export type NavigationItem =
   | "tags"
   | "search"
   | "about";
+
+export type Language = "en" | "es";
+
+export type CollectionEntryOptions =
+  | CollectionEntry<"snippets">
+  | CollectionEntry<"tutorials">;

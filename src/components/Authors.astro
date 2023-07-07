@@ -1,0 +1,62 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+  authors?: CollectionEntry<"authors">[];
+}
+
+const { authors } = Astro.props;
+---
+
+{
+  authors && authors.length > 1 ? (
+    <ul role="list" class="flex flex-wrap">
+      {authors.map(author => (
+        <li class="mr-20 py-3 sm:py-4">
+          <div class="flex items-center space-x-4">
+            {author.data.image && (
+              <div class="flex-shrink-0">
+                <img class="h-8 w-8 rounded-full" src={author.data.image} />
+              </div>
+            )}
+
+            <div class="min-w-0 flex-1">
+              <p class="text-gray-900 dark:text-white truncate text-sm font-medium">
+                Written by <strong>{author.data.name}</strong>
+              </p>
+              <p class="text-gray-500 dark:text-gray-400 truncate text-sm">
+                {author.data.title}
+              </p>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    authors &&
+    authors.length == 1 && (
+      <ul role="list">
+        {authors.map(author => (
+          <li class="py-3 sm:py-4">
+            <div class="flex items-center space-x-4">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="/assets/authors/dane-mackier.png"
+                />
+              </div>
+              <div class="min-w-0 flex-1">
+                <p class="text-gray-900 dark:text-white truncate text-sm font-medium">
+                  Written by <strong>{author.data.name}</strong>
+                </p>
+                <p class="text-gray-500 dark:text-gray-400 truncate text-sm">
+                  {author.data.title}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    )
+  )
+}

@@ -1,15 +1,16 @@
 ---
 import { localizePath } from "astro-i18next";
 import { SITE } from "@config";
+import FlutterWebCourseBanner from "@components/FlutterWebCourseBanner.astro";
 import Footer from "@components/Footer.astro";
+import getSnippetsCollection from "@utils/getSnippetsCollection";
+import getTutorialsCollection from "@utils/getTutorialsCollection";
 import Header from "@components/Header.astro";
 import i18next, { changeLanguage, t } from "i18next";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
-import { getCollection } from "astro:content";
-import getSortedPosts from "@utils/getSortedPosts";
-import FlutterWebCourseBanner from "@components/FlutterWebCourseBanner.astro";
 import PostsGrid from "@components/PostsGrid.astro";
+import type { Language } from "@types";
 
 changeLanguage("en");
 
@@ -19,17 +20,19 @@ const tRecentTutorials = t("home.recent_tutorials");
 const tAllTutorials = t("home.all_tutorials");
 const tRecentSnippets = t("home.recent_snippets");
 const tAllSnippets = t("home.all_snippets");
-const posts = await getCollection("blog", ({ id }) =>
-  id.startsWith(`${i18next.language}/`)
-);
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const tutorials = sortedPosts.filter(
-  ({ data }) => data.categories.includes("tutorial") && !data.featured
-);
-const snippets = sortedPosts.filter(
-  ({ data }) => data.categories.includes("snippet") && !data.featured
-);
+const featuredPosts = await getTutorialsCollection({
+  language: i18next.language as Language,
+  draft: false,
+  featured: true,
+});
+const tutorials = await getTutorialsCollection({
+  language: i18next.language as Language,
+  draft: false,
+});
+const snippets = await getSnippetsCollection({
+  language: i18next.language as Language,
+  draft: false,
+});
 ---
 
 <Layout title={`${tPageTitle} | ${SITE.title}`}>

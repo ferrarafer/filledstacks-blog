@@ -1,18 +1,17 @@
 ---
 title: Widget tricks - Reorder widgets on a stack
 description: A tutorial that shows you to re-order widgets in a stack
+authors:
+  - en/dane-mackier
 published: 2019-07-09
 updated: 2019-07-09
 postSlug: widget-tricks-reorder-widgets-on-a-stack
-ogImage: /assets/blog/snippets/042/042.jpg
+ogImage: /assets/snippets/042/042.jpg
 featured: false
 draft: false
 tags:
   - flutter
   - ui
-categories:
-  - snippet
-lang: en
 ---
 
 In this snippet I want to show you how to re-order widgets in a stack using some basic dart code. The re-order functionality can be anything you'd like it to be. We will simply put the last item first on every "shuffle".

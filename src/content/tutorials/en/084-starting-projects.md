@@ -3,16 +3,15 @@ title: Starting Projects
 published: 2023-01-20
 updated: 2023-01-20
 description: Contains the links to all the sourcecode for FilledStacks tutorials
+authors:
+  - en/dane-mackier
 postSlug: starting-projects
-ogImage: /assets/blog/tutorials/084/thumbnail.jpeg
+ogImage: /assets/tutorials/084/thumbnail.jpeg
 featured: false
 draft: false
 tags:
   - animation
   - automation
-categories:
-  - tutorial
-lang: en
 ---
 
 # Rebuilding Scroll animation

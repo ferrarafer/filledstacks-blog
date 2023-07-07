@@ -1,25 +1,25 @@
 ---
-import { getCollection } from "astro:content";
 import { SITE } from "@config";
 import getPageNumbers from "@utils/getPageNumbers";
-import getSortedPosts from "@utils/getSortedPosts";
+import getSnippetsCollection from "@utils/getSnippetsCollection";
 import i18next, { t, changeLanguage } from "i18next";
 import PostDetails from "@layouts/PostDetails.astro";
 import Posts from "@layouts/Posts.astro";
 import slugify from "@utils/slugify";
 import type { CollectionEntry } from "astro:content";
+import type { Language } from "@types";
 
 changeLanguage("en");
 
 interface Props {
-  post: CollectionEntry<"blog">;
+  post: CollectionEntry<"snippets">;
 }
 
 export async function getStaticPaths() {
-  const posts = await getCollection(
-    "blog",
-    ({ id, data }) => id.startsWith(`${i18next.language}/`) && !data.draft
-  );
+  const posts = await getSnippetsCollection({
+    language: i18next.language as Language,
+    draft: false,
+  });
   const postResult = posts.map(post => ({
     params: { slug: slugify(post.data) },
     props: { post },
@@ -35,16 +35,18 @@ const { post } = Astro.props;
 
 const tPageTitle = t("tutorials.title");
 const tPageDesc = t("tutorials.description");
-const posts = await getCollection("blog");
-const sortedPosts = getSortedPosts(posts);
-const totalPages = getPageNumbers(sortedPosts.length);
+const posts = await getSnippetsCollection({
+  language: i18next.language as Language,
+  draft: false,
+});
+const totalPages = getPageNumbers(posts.length);
 const currentPage =
   slug && !isNaN(Number(slug)) && totalPages.includes(Number(slug))
     ? Number(slug)
     : 0;
 const lastPost = currentPage * SITE.postPerPage;
 const startPost = lastPost - SITE.postPerPage;
-const paginatedPosts = sortedPosts.slice(startPost, lastPost);
+const paginatedPosts = posts.slice(startPost, lastPost);
 ---
 
 {

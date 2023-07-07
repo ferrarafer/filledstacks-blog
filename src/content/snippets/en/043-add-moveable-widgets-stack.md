@@ -1,18 +1,17 @@
 ---
 title: Widget tricks - Create movable Stack widgets
 description: A Stack tutorial for creating movable widgets
+authors:
+  - en/dane-mackier
 published: 2019-07-10
 updated: 2019-07-10
 postSlug: widget-tricks-create-movable-stack-widgets
-ogImage: /assets/blog/snippets/043/043.jpg
+ogImage: /assets/snippets/043/043.jpg
 featured: false
 draft: false
 tags:
   - flutter
   - ui
-categories:
-  - snippet
-lang: en
 ---
 
 One of my super secret Flutter projects for the Desktop and Web makes use of a canvas and a draggable node interface. This tutorial will show how I used a stack to accomplish draggable functionality using widgets. Not drag and Drop. Draggable, like below.

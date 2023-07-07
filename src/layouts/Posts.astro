@@ -19,7 +19,7 @@ interface Props {
   pageDescription: string;
   pageNum: number;
   pageTitle: string;
-  posts: CollectionEntry<"blog">[];
+  posts: (CollectionEntry<"snippets"> | CollectionEntry<"tutorials">)[];
   rssPathFile?: string;
   totalPages: number;
 }

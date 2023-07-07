@@ -1,24 +1,22 @@
 ---
-import { SITE } from "@config";
-import Posts from "@layouts/Posts.astro";
-import getSortedPosts from "@utils/getSortedPosts";
-import getPageNumbers from "@utils/getPageNumbers";
-import { getCollection } from "astro:content";
-import i18next, { t, changeLanguage } from "i18next";
 import { localizePath } from "astro-i18next";
+import { SITE } from "@config";
+import getPageNumbers from "@utils/getPageNumbers";
+import getSnippetsCollection from "@utils/getSnippetsCollection";
+import i18next, { t, changeLanguage } from "i18next";
+import Posts from "@layouts/Posts.astro";
+import type { Language } from "@types";
 
 changeLanguage("en");
 
 const tPageTitle = t("snippets.title");
 const tPageDesc = t("snippets.description");
-const posts = await getCollection(
-  "blog",
-  ({ id, data }) =>
-    id.startsWith(`${i18next.language}/`) && data.categories.includes("snippet")
-);
-const sortedPosts = getSortedPosts(posts);
-const totalPages = getPageNumbers(sortedPosts.length);
-const paginatedPosts = sortedPosts.slice(0, SITE.postPerPage);
+const posts = await getSnippetsCollection({
+  language: i18next.language as Language,
+  draft: false,
+});
+const totalPages = getPageNumbers(posts.length);
+const paginatedPosts = posts.slice(0, SITE.postPerPage);
 ---
 
 <Posts
@@ -29,6 +27,5 @@ const paginatedPosts = sortedPosts.slice(0, SITE.postPerPage);
   posts={paginatedPosts}
   pageNum={1}
   totalPages={totalPages.length}
-  rssPathFile="/snippets/rss.xml"
   rssPathFile={localizePath(`/snippets/rss.xml`, i18next.language)}
 />

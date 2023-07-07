@@ -1,19 +1,21 @@
 ---
 title: An Advanced Flutter Dialog System
 description: This tutorial goes over the process of setting up a custom dialog in your Flutter application
+authors:
+  - en/dane-mackier
+  - en/fernando-ferrara
 published: 2021-07-23
 updated: 2021-07-23
 postSlug: an-advance-flutter-dialog-system
-ogImage: /assets/blog/tutorials/081/81.jpg
+ogImage: /assets/tutorials/081/81.jpg
 ogVideo: https://www.youtube.com/embed/alp45Szg7Vk
 featured: false
 draft: false
 tags:
   - boxtout
   - dialog
-categories:
-  - tutorial
-lang: en
+# relatedPosts:
+#   - starting-projects
 ---
 
 # Overview
