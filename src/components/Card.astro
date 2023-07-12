@@ -17,11 +17,11 @@ const { remarkPluginFrontmatter } = await post.render();
   <a href={href}>
     <div class="shadow duration-200 ease-in hover:scale-105">
       <img class="rounded-t-lg" src={ogImage} alt="" />
-      <div class="blog-roll-card rounded-b-lg p-5">
+      <div class="blog-roll-card rounded-b-lg p-3">
         <h5 class="mb-5 text-base font-bold leading-5 tracking-tight">
           {title}
         </h5>
-        <p class="mb-10 text-xs font-thin leading-6">{description}</p>
+        <p class="mb-10 text-xs font-thin leading-5">{description}</p>
         <CardReadingTime time={remarkPluginFrontmatter.minutes} />
         <CardDatetime datetime={published} />
       </div>

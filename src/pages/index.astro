@@ -1,7 +1,6 @@
 ---
 import { localizePath } from "astro-i18next";
 import { SITE } from "@config";
-import FlutterWebCourseBanner from "@components/FlutterWebCourseBanner.astro";
 import Footer from "@components/Footer.astro";
 import getSnippetsCollection from "@utils/getSnippetsCollection";
 import getTutorialsCollection from "@utils/getTutorialsCollection";
@@ -11,6 +10,8 @@ import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import PostsGrid from "@components/PostsGrid.astro";
 import type { Language } from "@types";
+import YoutubeVideo from "@components/YoutubeVideo.astro";
+import StackedBanner from "@components/StackedBanner.astro";
 
 changeLanguage("en");
 
@@ -38,20 +39,32 @@ const snippets = await getSnippetsCollection({
 <Layout title={`${tPageTitle} | ${SITE.title}`}>
   <Header />
   <Main pageTitle={tPageTitle}>
-    <FlutterWebCourseBanner />
-    <PostsGrid baseUrl="post" posts={featuredPosts} title={tFeatured} />
+    <YoutubeVideo
+      src="https://www.youtube.com/embed/yvn6I9hzsJs"
+      title="Build a Flutter Website in 2023 (Like a Senior Developer)"
+    />
+    <StackedBanner
+      href="https://stacked.filledstacks.com/"
+      src="/assets/stacked-800-200.jpg"
+      alt="Stacked"
+    />
+    <PostsGrid
+      baseUrl="post"
+      posts={featuredPosts.slice(0, 6)}
+      title={tFeatured}
+    />
     <PostsGrid
       baseUrl="post"
       linkToAllHref={localizePath(`/tutorials`, i18next.language)}
       linkToAllText={tAllTutorials}
-      posts={tutorials}
+      posts={tutorials.slice(0, 6)}
       title={tRecentTutorials}
     />
     <PostsGrid
       baseUrl="snippet"
       linkToAllHref={localizePath(`/snippets`, i18next.language)}
       linkToAllText={tAllSnippets}
-      posts={snippets}
+      posts={snippets.slice(0, 6)}
       title={tRecentSnippets}
     />
   </Main>

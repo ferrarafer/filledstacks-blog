@@ -18,4 +18,4 @@ tags:
 
 Click the image below to download the starting code for the scroll animation tutorial
 
-[![Scroll animation preview](/assets/blog/tutorials/084/084.jpeg)](https://firebasestorage.googleapis.com/v0/b/filledstacks.appspot.com/o/tutorials%2Fscroll_animations.zip?alt=media&token=1801acd6-6d24-4ffa-ab06-ee792fe5a2e6)
+[![Scroll animation preview](/assets/tutorials/084/084.jpeg)](https://firebasestorage.googleapis.com/v0/b/filledstacks.appspot.com/o/tutorials%2Fscroll_animations.zip?alt=media&token=1801acd6-6d24-4ffa-ab06-ee792fe5a2e6)

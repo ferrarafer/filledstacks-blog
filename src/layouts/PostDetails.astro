@@ -1,5 +1,5 @@
 ---
-import { getEntries, type CollectionEntry } from "astro:content";
+import { getEntries } from "astro:content";
 import { t } from "i18next";
 import Authors from "@components/Authors.astro";
 import CardDatetime from "@components/CardDatetime";
@@ -8,11 +8,12 @@ import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import Layout from "@layouts/Layout.astro";
 import Tag from "@components/Tag.astro";
-import type { NavigationItem } from "@types";
+import type { CollectionEntryOptions, NavigationItem } from "@types";
+import RelatedPosts from "@components/RelatedPosts.astro";
 
 interface Props {
   category: NavigationItem;
-  post: CollectionEntry<"snippets"> | CollectionEntry<"tutorials">;
+  post: CollectionEntryOptions;
 }
 
 const { category, post } = Astro.props;
@@ -35,12 +36,12 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.svg`, Astro.url.origin)
   ogImage={ogUrl}
 >
   <Header activeNav={category} />
-  <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
+  <div class="mx-auto flex w-full max-w-4xl justify-start px-2">
     <button
       class="focus-outline mt-8 mb-2 flex hover:opacity-75"
       onclick="
       history.back()
-"
+      "
     >
       <svg xmlns="http://www.w3.org/2000/svg"
         ><path
@@ -76,7 +77,7 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.svg`, Astro.url.origin)
         <img src={ogUrl} class="mt-8" />
       )
     }
-    <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
+    <article id="article" role="article" class="prose mx-auto mt-8 max-w-4xl">
       <Content />
     </article>
 
@@ -84,12 +85,13 @@ const ogUrl = new URL(ogImage ? ogImage : `${title}.svg`, Astro.url.origin)
       {tags.map(tag => <Tag name={tag} />)}
     </ul>
   </main>
+  <RelatedPosts post={post} />
   <Footer />
 </Layout>
 
 <style>
   main {
-    @apply mx-auto w-full max-w-3xl px-4 pb-12;
+    @apply mx-auto w-full max-w-4xl px-4 pb-12;
   }
   .post-title {
     @apply text-2xl font-semibold text-skin-accent;

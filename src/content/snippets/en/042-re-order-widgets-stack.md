@@ -1,6 +1,6 @@
 ---
 title: Widget tricks - Reorder widgets on a stack
-description: A tutorial that shows you to re-order widgets in a stack
+description: A tutorial that shows you to re-order widgets in a stack.
 authors:
   - en/dane-mackier
 published: 2019-07-09
@@ -12,11 +12,13 @@ draft: false
 tags:
   - flutter
   - ui
+relatedSnippets:
+  - en/043-add-moveable-widgets-stack
 ---
 
 In this snippet I want to show you how to re-order widgets in a stack using some basic dart code. The re-order functionality can be anything you'd like it to be. We will simply put the last item first on every "shuffle".
 
-![Flutter Stack Widgets reorder](/assets/blog/snippets/042/reorder-example.gif)
+![Flutter Stack Widgets reorder](/assets/snippets/042/reorder-example.gif)
 
 We'll start with a simple HomeView and make it a stateful widget. We'll also put a list of integers which we'll use as our widget Id's. This way you can easily transform the code to use a list from your model.
 
@@ -84,7 +86,7 @@ return Scaffold(
 
 This should give you three blocks drawn on the screen like below.
 
-![Screenshot of Stack widgets](/assets/blog/snippets/042/screenshot.jpg)
+![Screenshot of Stack widgets](/assets/snippets/042/screenshot.jpg)
 
 ## Reordering
 

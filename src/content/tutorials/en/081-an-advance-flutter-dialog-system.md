@@ -3,7 +3,6 @@ title: An Advanced Flutter Dialog System
 description: This tutorial goes over the process of setting up a custom dialog in your Flutter application
 authors:
   - en/dane-mackier
-  - en/fernando-ferrara
 published: 2021-07-23
 updated: 2021-07-23
 postSlug: an-advance-flutter-dialog-system
@@ -14,8 +13,6 @@ draft: false
 tags:
   - boxtout
   - dialog
-# relatedPosts:
-#   - starting-projects
 ---
 
 # Overview
@@ -284,10 +281,10 @@ const String CityNotServicedDialogSecondaryButton = 'View Areas';
 
 ### The Final result
 
-![Flutter warning Dialog](/assets/blog/tutorials/081/warning.png)
+![Flutter warning Dialog](/assets/tutorials/081/warning.png)
 
-![Flutter Error Dialog](/assets/blog/tutorials/081/error.png)
+![Flutter Error Dialog](/assets/tutorials/081/error.png)
 
-![Flutter Success Dialog](/assets/blog/tutorials/081/success.png)
+![Flutter Success Dialog](/assets/tutorials/081/success.png)
 
 That's how you setup a Custom Dialog in Flutter. Thank you for reading, we'll see you again next week.

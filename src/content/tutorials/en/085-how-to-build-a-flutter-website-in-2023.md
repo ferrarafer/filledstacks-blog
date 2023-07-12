@@ -7,6 +7,7 @@ published: 2023-02-28
 updated: 2023-02-28
 postSlug: how-to-build-a-flutter-website-in-2023
 ogImage: /assets/tutorials/085/thumbnail.jpeg
+ogVideo: https://www.youtube.com/embed/yvn6I9hzsJs
 featured: false
 draft: false
 tags:
@@ -78,11 +79,11 @@ My goal is always to have scalable code, meaning me and my team have a pattern t
 
 With that brief overview we can start building the Desktop UI (Design below).
 
-![FilledStacks Academy Desktop UI](/assets/blog/tutorials/085/01-desktop-ui.jpeg)
+![FilledStacks Academy Desktop UI](/assets/tutorials/085/01-desktop-ui.jpeg)
 
 We'll break up the layout as follows.
 
-<!-- ![FilledStacks Academy Desktop UI Breakdown](../images/085/02-desktop-ui-breakdown.jpeg) -->
+<!-- ![FilledStacks Academy Desktop UI Breakdown](/assets/tutorials/085/02-desktop-ui-breakdown.jpeg) -->
 
 ### UI Layouts
 
@@ -110,7 +111,7 @@ Widget build(BuildContext context, HomeViewModel viewModel) {
 
 Now that we have the layout we can start adding in our actual UI. Below is a per widget breakdown of the UI we are going to build.
 
-![Flutter Desktop UI Breakdown](/assets/blog/tutorials//085/03-desktop-widget-breakdown.jpg)
+![Flutter Desktop UI Breakdown](/assets/tutorials//085/03-desktop-widget-breakdown.jpg)
 
 Each rectangle shows a separate widget with its type in the tag next to it. You can copy the below and paste it inside the `Column` children.
 
@@ -250,7 +251,7 @@ flutter:
 
 In your terminal run `flutter run -d chrome` and you'll see a very ugly web application 😂
 
-![Flutter widgets without Styling](/assets/blog/tutorials/085/04-ui-layout-complete.jpg)
+![Flutter widgets without Styling](/assets/tutorials/085/04-ui-layout-complete.jpg)
 
 UI building in a tutorial is not my favorite, I always try to keep it as compact as I can. Only one more set of UI styling left then we can move on to more fun things like responsive layouts.
 
@@ -412,13 +413,13 @@ ClipRRect(
 
 Download [the hero image](https://firebasestorage.googleapis.com/v0/b/filledstacks.appspot.com/o/tutorials%2F085%2Fmaster-web-hero-image.png?alt=media&token=724f8444-03c1-4cd1-8e8f-bd2b0de4a691) and place it in the assets folder where the arrow is. Now when you run the app you should see a UI matching our original design. Easy Peasy! Let's move on.
 
-![Flutter Web original design](/assets/blog/tutorials//085/01-desktop-ui.jpeg)
+![Flutter Web original design](/assets/tutorials//085/01-desktop-ui.jpeg)
 
 ## Responsive UI
 
 Here is the design for the mobile UI
 
-![Mobile UI Layout](/assets/blog/tutorials//085/05-mobile-design.jpeg)
+![Mobile UI Layout](/assets/tutorials//085/05-mobile-design.jpeg)
 
 As you can see the widgets are the same, but in a different layout. So we'll start off by refactoring each of the widgets we added into its own file so we can re-use it. We'll create a new folder at `lib/ui/view/home/` called `widgets`. _I store all my widgets that are only used in single views in a folder called widgets so its easy to know its scope and where it will be used._
 
@@ -621,7 +622,7 @@ Row(
 
 Now that the widgets are all refactored they're ready for re-use on the mobile UI. Looking at this design we see that it's now a single `Column`.
 
-![Flutter Mobile Design Layout Breakdown](/assets/blog/tutorials//085/06-mobile-layout-breakdown.jpeg)
+![Flutter Mobile Design Layout Breakdown](/assets/tutorials//085/06-mobile-layout-breakdown.jpeg)
 
 We can open `home_view.mobile.dart` and Organize the widgets in the order they show up in the design.
 
@@ -688,7 +689,7 @@ class HomeImage extends StatelessWidget {
 
 If you're running the app make your browser window as small as it can go and you'll see the UI now looks like this.
 
-![Mobile UI Preview](/assets/blog/tutorials//085/07-mobile-ui-preview-1.jpg)
+![Mobile UI Preview](/assets/tutorials//085/07-mobile-ui-preview-1.jpg)
 
 Only 3 widget responsive changes required and this UI will be ready.
 
@@ -962,7 +963,7 @@ HomeNotifyButton(onTap: viewModel.captureEmail),
 
 Then what we'll do is run `stacked generate` to update the generated code to the latest, then run the app again using `flutter run -d chrome`. Now type in an email or anything really, then tap the "Notify Me" button. You should see a dialog pop up with the value that you typed in like below.
 
-<!-- ![Final Flutter Dialog on Web Screenshot](../images/085/08-final-dialog-screenshot.jpg) -->
+<!-- ![Final Flutter Dialog on Web Screenshot](/assets/tutorials/085/08-final-dialog-screenshot.jpg) -->
 
 ### Bonus UI
 

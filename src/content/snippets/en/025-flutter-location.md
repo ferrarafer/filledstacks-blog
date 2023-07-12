@@ -13,6 +13,7 @@ draft: false
 tags:
   - flutter
   - location
+# friendlyId: snippet-025
 ---
 
 Getting your location in Flutter is an easy task. This tutorial will show you how to wrap the location package into a service that's easy to consume in your application. Create a new Flutter project and follow along.
