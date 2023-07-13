@@ -4,16 +4,31 @@ on:
   push:
     branches:
       - main
+  # Allows you to run this workflow manually from the Actions tab on GitHub.
+  workflow_dispatch:
 
 jobs:
   build-and-deploy-production:
+    name: Build and Deploy to Production
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./website
     steps:
-      - uses: actions/checkout@v2
-      - run: npm i -g pnpm@latest
-      - run: pnpm i
-      - run: pnpm build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install PNpM (Fast, disk space efficient package manager)
+        run: npm i -g pnpm@latest
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Build webapp
+        run: pnpm build
+
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
