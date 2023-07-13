@@ -1,3 +1,0 @@
-# Add Tutorial to Tutorials Collection
-
-### TO BE DOCUMENTED...

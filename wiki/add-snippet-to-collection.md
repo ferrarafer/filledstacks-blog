@@ -1,3 +1,0 @@
-# Add Snippet to Snippets Collection
-
-### TO BE DOCUMENTED...
