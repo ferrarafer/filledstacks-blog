@@ -1,8 +1,8 @@
 {
-  "name": "blog",
-  "version": "2.1.0",
+  "name": "filledstacks",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro check --watch & astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^2.1.0",
-    "astro": "^2.0.8",
+    "astro": "^2.7.4",
     "astro-i18next": "^1.0.0-beta.18",
     "fuse.js": "^6.6.2",
     "github-slugger": "^2.0.0",

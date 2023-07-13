@@ -1,8 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 import type { SocialObjects } from "./types";
 
-export type Frontmatter = CollectionEntry<"blog">["data"];
-
 export const SITE = {
   website: "https://filledstacks-blog.web.app/",
   author: "Dane Mackier",

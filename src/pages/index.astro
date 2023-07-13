@@ -2,14 +2,16 @@
 import { localizePath } from "astro-i18next";
 import { SITE } from "@config";
 import Footer from "@components/Footer.astro";
+import getSnippetsCollection from "@utils/getSnippetsCollection";
+import getTutorialsCollection from "@utils/getTutorialsCollection";
 import Header from "@components/Header.astro";
 import i18next, { changeLanguage, t } from "i18next";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
-import { getCollection } from "astro:content";
-import getSortedPosts from "@utils/getSortedPosts";
-import FlutterWebCourseBanner from "@components/FlutterWebCourseBanner.astro";
 import PostsGrid from "@components/PostsGrid.astro";
+import type { Language } from "@types";
+import YoutubeVideo from "@components/YoutubeVideo.astro";
+import StackedBanner from "@components/StackedBanner.astro";
 
 changeLanguage("en");
 
@@ -19,36 +21,50 @@ const tRecentTutorials = t("home.recent_tutorials");
 const tAllTutorials = t("home.all_tutorials");
 const tRecentSnippets = t("home.recent_snippets");
 const tAllSnippets = t("home.all_snippets");
-const posts = await getCollection("blog", ({ id }) =>
-  id.startsWith(`${i18next.language}/`)
-);
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const tutorials = sortedPosts.filter(
-  ({ data }) => data.categories.includes("tutorial") && !data.featured
-);
-const snippets = sortedPosts.filter(
-  ({ data }) => data.categories.includes("snippet") && !data.featured
-);
+const featuredPosts = await getTutorialsCollection({
+  language: i18next.language as Language,
+  draft: false,
+  featured: true,
+});
+const tutorials = await getTutorialsCollection({
+  language: i18next.language as Language,
+  draft: false,
+});
+const snippets = await getSnippetsCollection({
+  language: i18next.language as Language,
+  draft: false,
+});
 ---
 
 <Layout title={`${tPageTitle} | ${SITE.title}`}>
   <Header />
   <Main pageTitle={tPageTitle}>
-    <FlutterWebCourseBanner />
-    <PostsGrid baseUrl="post" posts={featuredPosts} title={tFeatured} />
+    <YoutubeVideo
+      src="https://www.youtube.com/embed/yvn6I9hzsJs"
+      title="Build a Flutter Website in 2023 (Like a Senior Developer)"
+    />
+    <StackedBanner
+      href="https://stacked.filledstacks.com/"
+      src="/assets/stacked-800-200.jpg"
+      alt="Stacked"
+    />
+    <PostsGrid
+      baseUrl="post"
+      posts={featuredPosts.slice(0, 6)}
+      title={tFeatured}
+    />
     <PostsGrid
       baseUrl="post"
       linkToAllHref={localizePath(`/tutorials`, i18next.language)}
       linkToAllText={tAllTutorials}
-      posts={tutorials}
+      posts={tutorials.slice(0, 6)}
       title={tRecentTutorials}
     />
     <PostsGrid
       baseUrl="snippet"
       linkToAllHref={localizePath(`/snippets`, i18next.language)}
       linkToAllText={tAllSnippets}
-      posts={snippets}
+      posts={snippets.slice(0, 6)}
       title={tRecentSnippets}
     />
   </Main>

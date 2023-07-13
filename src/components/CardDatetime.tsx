@@ -42,6 +42,7 @@ const FormattedDatetime = ({ datetime }: { datetime: string | Date }) => {
   const myDatetime = new Date(datetime);
 
   const date = myDatetime.toLocaleDateString([i18next.language], {
+    timeZone: "Africa/Accra",
     year: "numeric",
     month: "long",
     day: "numeric",

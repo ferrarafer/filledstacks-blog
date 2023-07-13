@@ -10,7 +10,7 @@ interface Props {
   baseUrl: string;
   linkToAllHref?: string;
   linkToAllText?: string;
-  posts: CollectionEntry<"blog">[];
+  posts: (CollectionEntry<"snippets"> | CollectionEntry<"tutorials">)[];
   title?: string;
 }
 

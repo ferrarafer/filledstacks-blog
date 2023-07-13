@@ -1,0 +1,37 @@
+---
+import type { CollectionEntryOptions } from "@types";
+import getRelatedPosts from "@utils/getRelatedPosts";
+import slugify from "@utils/slugify";
+import { localizePath } from "astro-i18next";
+import i18next from "i18next";
+import Card from "./Card.astro";
+
+interface Props {
+  post: CollectionEntryOptions;
+}
+
+const { post } = Astro.props;
+
+const posts = await getRelatedPosts({ post: post });
+---
+
+{
+  posts && posts.length > 0 && (
+    <section class="pt-12 pb-6">
+      <h2 class="mt-6 mb-6 text-4xl font-bold leading-none">Also check out</h2>
+      <div class="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map(post => (
+          <Card
+            href={localizePath(
+              `/${
+                post.collection === "tutorials" ? "post" : "snippet"
+              }/${slugify(post.data)}`,
+              i18next.language
+            )}
+            post={post}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}

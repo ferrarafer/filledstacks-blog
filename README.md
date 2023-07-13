@@ -1,4 +1,4 @@
-# FilledStacks Blog 📄
+# FilledStacks Webapp 📄
 
 ![FilledStacks](public/filledstacks-og.png)
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
@@ -12,10 +12,26 @@
 /
 ├── public/
 │   ├── assets/
+│   │   └── authors/
+│   │   │   └── dane-mackier.png
+│   │   │   └── fernando-ferrara.png
+│   │   └── snippets/
+│   │   │   └── 001/
+│   │   │   │   └── 001.jpg
+│   │   │   └── [snippet]/
+│   │   └── tutorials/
+│   │   │   └── 001/
+│   │   │   │   └── 001.jpg
+│   │   │   └── [tutorial]/
 │   │   └── logo.svg
 │   │   └── logo.png
+│   ├── locales/
+│   │   └── en/
+│   │   │   └── translation.json
+│   │   └── es/
+│   │   │   └── translation.json
 │   └── favicon.svg
-│   └── astropaper-og.jpg
+│   └── filledstacks-og.png
 │   └── robots.txt
 │   └── toggle-theme.js
 ├── src/
@@ -23,9 +39,30 @@
 │   │   └── socialIcons.ts
 │   ├── components/
 │   ├── content/
-│   │   |  blog/
-|   |   |    [lang]/
-│   │   |       └── some-blog-posts.md
+│   │   └── authors/
+│   │   │   └── en/
+│   │   │   │   └── dane-mackier.json
+│   │   │   │   └── fernando-ferrara.json
+│   │   │   │   └── [author].json
+│   │   │   └── es/
+│   │   │   │   └── dane-mackier.json
+│   │   │   │   └── fernando-ferrara.json
+│   │   │   │   └── [author].json
+│   │   └── newsletter/
+│   │   └── snippets/
+│   │   │   └── en/
+│   │   │   │   └── 001-svelte-looks-good.md
+│   │   │   │   └── [snippet].md
+│   │   │   └── es/
+│   │   │   │   └── 001-svelte-looks-good.md
+│   │   │   │   └── [snippet].md
+│   │   └── tutorials/
+│   │   │   └── en/
+│   │   │   │   └── 001-flutter-tiktok.md
+│   │   │   │   └── [tutorial].md
+│   │   │   └── es/
+│   │   │   │   └── 001-flutter-tiktok.md
+│   │   │   │   └── [tutorial].md
 │   │   └── _schemas.ts
 │   │   └── config.ts
 │   ├── layouts/
@@ -41,9 +78,14 @@ Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page
 
 Any static assets, like images, can be placed in the `public/` directory.
 
-All blog posts are stored in `src/content/blog` directory.
+All collections are stored in `src/content` directory.
 
 ## 📖 Documentation
+
+- [Configuration](/wiki/configuration.md)
+- [Add Author to Authors Collection](/wiki/add-author-to-collection.md)
+- [Add Snippet to Snippets Collection](/wiki/add-snippet-to-collection.md)
+- [Add Tutorial to Tutorials Collection](/wiki/add-tutorial-to-collection.md)
 
 ## 💻 Tech Stack
 
