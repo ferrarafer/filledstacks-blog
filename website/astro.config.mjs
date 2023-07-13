@@ -9,7 +9,7 @@ import astroI18next from "astro-i18next";
 import { remarkReadingTime } from "./remark-reading-time.mjs";
 
 export default defineConfig({
-  site: "https://filledstacks-blog.web.app/",
+  site: "hhttps://github.com/ferrarafer/filledstacks-blog/",
   integrations: [
     tailwind({
       config: {

@@ -2,7 +2,7 @@ import type { CollectionEntry } from "astro:content";
 import type { SocialObjects } from "./types";
 
 export const SITE = {
-  website: "https://filledstacks-blog.web.app/",
+  website: "https://github.com/ferrarafer/filledstacks-blog/",
   author: "Dane Mackier",
   desc: "Learn to Produce Production Level Code",
   title: "FilledStacks",
