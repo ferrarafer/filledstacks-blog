@@ -1,13 +1,13 @@
 import type { CollectionEntryOptions, Language } from "@types";
 import getSnippetsCollection from "./getSnippetsCollection";
-import i18next from "i18next";
 import getTutorialsCollection from "./getTutorialsCollection";
+import i18next from "i18next";
 
-interface Props {
+export default async function getRelatedPosts({
+  post,
+}: {
   post: CollectionEntryOptions;
-}
-
-export default async function getRelatedPosts({ post }: Props) {
+}) {
   // get snippets
   const snippets = await getSnippetsCollection({
     language: i18next.language as Language,

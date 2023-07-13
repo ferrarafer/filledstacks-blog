@@ -8,9 +8,11 @@ export const SITE = {
   title: "FilledStacks",
   ogImage: "filledstacks-og.jpg",
   lightAndDarkMode: true,
-  postPerPage: 15,
   isLocalizationEnabled: false,
+  postPerPage: 15,
 };
+
+export const LOCALE = ["en-EN", "es-ES"];
 
 export const LOGO_IMAGE = {
   enable: false,

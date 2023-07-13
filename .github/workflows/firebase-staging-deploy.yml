@@ -1,0 +1,24 @@
+name: Deploy to the Staging channel
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-staging-preview:
+    runs-on: ubuntu-latest
+    # You can also add environmental secrets (.env)
+    # environment: production
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm i -g pnpm@latest
+      - run: pnpm i
+      - run: pnpm build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT` }}"
+          expires: 30d
+          projectId: filledstacks-blog
+          channelId: staging
